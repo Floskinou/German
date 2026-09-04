@@ -15,7 +15,7 @@ Puis ouvrir `http://localhost:8080`.
 - Validité actuelle des matricules nationale 52.371 et provinciale 63.267 avant de les afficher.
 - Autorisation du numéro WhatsApp et de l'adresse e-mail publiés.
 - Modalités, tarifs et disponibilités exactes.
-- Remplacement du monogramme `GG` par un portrait professionnel autorisé.
+
 
 ## Sources professionnelles utilisées
 
