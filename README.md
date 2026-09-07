@@ -16,6 +16,13 @@ Puis ouvrir `http://localhost:8080`.
 - Autorisation du numéro WhatsApp et de l'adresse e-mail publiés.
 - Modalités, tarifs et disponibilités exactes.
 
+## Fonctionnement du contact et des tarifs
+
+- Le formulaire ouvre un e-mail prérempli à `lic.guarino.psicologo@gmail.com` ; aucun message n'est stocké par le site.
+- Le QR code WhatsApp est hébergé localement dans `assets/whatsapp-qr.png` et encode `https://wa.me/5491159539389`.
+- La grille de 20 / 30 / 100 USD est une proposition commerciale à faire valider par Germán avant toute campagne.
+- Les références européennes affichées sont des repères publics observés en septembre 2026, pas des barèmes officiels.
+
 
 ## Sources professionnelles utilisées
 
