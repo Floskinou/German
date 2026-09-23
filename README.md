@@ -16,11 +16,18 @@ Puis ouvrir `http://localhost:8080`.
 - Autorisation du numéro WhatsApp et de l'adresse e-mail publiés.
 - Modalités, tarifs et disponibilités exactes.
 
-## Fonctionnement du contact et des tarifs
+## Formulaire Netlify et données de contact
 
-- Le formulaire ouvre un e-mail prérempli à `lic.guarino.psicologo@gmail.com` ; aucun message n'est stocké par le site.
-- Les conversions Google Ads sont installées avec le Google tag `AW-18469753508`. « Contact WhatsApp » se déclenche sur les clics `wa.me` et l'ouverture de la route QR (`qr_whatsapp_scan`) ; « Formulaire de contact » se déclenche après une soumission HTML valide, qui ouvre un e-mail prérempli. Ces événements mesurent des interactions, pas l'envoi confirmé d'un message WhatsApp ou d'un e-mail.
-- La CMP personnalisée destinée au public britannique démarre Consent Mode avec tous les états à `denied` et utilise le mode basique : Google Ads ne charge qu'après l'opt-in de mesure. Les choix sont séparés par finalité, mémorisés 90 jours dans `localStorage`, révisables depuis le pied de page et retirables. Analytics, `ad_user_data`, personnalisation et remarketing restent désactivés. Les conversions restent génériques (`send_to`, `value: 1.0`, `currency: ARS`) et n'incluent aucun champ du formulaire ; la route QR ne mesure que si un opt-in valide est déjà enregistré et redirige dans tous les cas vers WhatsApp.
+- Le formulaire ne demande que le nom et l'adresse e-mail. Le motif de consultation, les champs libres, le téléphone et le nom de famille ont été retirés : ne pas collecter de détails cliniques dans un formulaire public.
+- Sur Netlify, `data-netlify="true"`, le champ `form-name` et le honeypot activent la détection statique. Le formulaire n'est traité qu'après un déploiement Netlify avec la détection activée; les notifications e-mail doivent être ajoutées dans **Project configuration → Notifications → Emails and webhooks → Form submission notifications**, destinataire `lic.guarino.psicologo@gmail.com`.
+- La configuration Netlify publie la racine (`netlify.toml`, dossier `.`), sans commande de build. `https://german-guarino.netlify.app/` sert actuellement une version correspondant à `origin/main`, avec une réécriture d'URL par Netlify; le formulaire traité par Netlify ne sera actif qu'après déploiement et activation de la détection. `https://floskinou.github.io/German/` reste une version GitHub Pages distincte. Ne pas promettre de notification e-mail avant de l'avoir configurée dans Netlify et vérifiée par un test réel.
+- Les soumissions acceptées par Netlify restent disponibles dans le panneau Forms; les consulter et supprimer régulièrement. Le traitement des données de santé est exclu du formulaire.
+- Sur la version GitHub Pages, le formulaire garde un secours `mailto:` vers `lic.guarino.psicologo@gmail.com`; l'utilisateur doit appuyer lui-même sur « Envoyer ». Cette voie ne confirme ni envoi ni réception.
+
+## Conversions et tarifs
+
+- Google Ads ne reçoit aucun champ du formulaire. Une conversion `contact_form_submit` ne part qu'après réponse HTTP de succès du formulaire Netlify et uniquement si la personne a consenti à la mesure. Le fallback `mailto:` ne compte pas comme conversion.
+- Les clics WhatsApp/QR mesurent une interaction, jamais un message effectivement envoyé ou reçu. La CMP démarre avec les états de consentement à `denied`; Google Ads ne charge qu'après l'opt-in. Analytics, `ad_user_data`, personnalisation et remarketing restent désactivés.
 - La grille proposée est de 30 EUR pour la première entrevue, 51 EUR par séance et 170 EUR pour quatre séances. Le tarif individuel correspond exactement à 15 % sous la borne espagnole de 60 EUR (60 × 0,85 = 51).
 - Les références européennes affichées sont des repères publics observés en septembre 2026, pas des barèmes officiels.
 

@@ -20,6 +20,7 @@
   <meta name="ads-measurement" content="enabled">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="consent.css">
+  <link rel="stylesheet" href="form.css">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Psychologist","name":"Lic. Germán Esteban Guarino","email":"lic.guarino.psicologo@gmail.com","telephone":"+54 9 11 5953-9389","areaServed":"Argentina","availableService":{"@type":"MedicalTherapy","name":"Atención psicológica online"},"url":"https://floskinou.github.io/German/"}</script>
 </head>
 <body>
@@ -174,27 +175,20 @@
       <div class="contact-grid">
         <div class="contact-form-area">
           <h2>Envíame un mensaje</h2>
-          <p>Dejame tus datos y te respondo a la brevedad para coordinar una entrevista.</p>
-          <form class="contact-form" id="contactForm">
+          <p>Dejame lo mínimo para responderte y coordinar una primera entrevista.</p>
+          <form class="contact-form" id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="contact">
+            <p class="form-honeypot" hidden><label>No completes este campo: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
             <div class="form-row-2">
-              <input type="text" id="cf_nombre" placeholder="Nombre" required aria-label="Nombre">
-              <input type="text" id="cf_apellido" placeholder="Apellido" required aria-label="Apellido">
+              <label class="form-field" for="cf_nombre">Nombre
+                <input type="text" id="cf_nombre" name="name" placeholder="Nombre" required autocomplete="name">
+              </label>
+              <label class="form-field" for="cf_email">Email
+                <input type="email" id="cf_email" name="email" placeholder="Email" required autocomplete="email">
+              </label>
             </div>
-            <div class="form-row-2">
-              <input type="tel" id="cf_telefono" placeholder="Teléfono" aria-label="Teléfono">
-              <input type="email" id="cf_email" placeholder="Email" required aria-label="Email">
-            </div>
-            <select id="cf_motivo" aria-label="Motivo de consulta">
-              <option value="">Seleccioná un motivo</option>
-              <option>Ansiedad o angustia</option>
-              <option>Crisis emocional</option>
-              <option>Depresión</option>
-              <option>Consumos problemáticos</option>
-              <option>Primera consulta informativa</option>
-              <option>Otro</option>
-            </select>
-            <textarea id="cf_mensaje" rows="4" placeholder="Contame brevemente qué te está pasando (opcional)" aria-label="Mensaje"></textarea>
-            <button type="submit" class="button button-primary">Enviar mensaje <span aria-hidden="true">→</span></button>
+            <p class="contact-privacy-note">Para cuidar tu privacidad, no incluyas datos de salud, diagnósticos ni detalles clínicos. Este formulario es solo para coordinar un primer contacto. <a href="privacidad.html">Leé el aviso de privacidad.</a></p>
+            <button type="submit" class="button button-primary">Enviar consulta <span aria-hidden="true">→</span></button>
           </form>
           <p class="contact-form-status" id="contactFormStatus" role="status" aria-live="polite"></p>
         </div>

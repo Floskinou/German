@@ -53,40 +53,68 @@ if (year) year.textContent = new Date().getFullYear();
 
 const contactForm = document.querySelector('#contactForm');
 if (contactForm) {
-  contactForm.addEventListener('submit', (event) => {
+  contactForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const nombre = document.querySelector('#cf_nombre').value.trim();
-    const apellido = document.querySelector('#cf_apellido').value.trim();
-    const telefono = document.querySelector('#cf_telefono').value.trim();
     const email = document.querySelector('#cf_email').value.trim();
-    const motivo = document.querySelector('#cf_motivo').value;
-    const mensaje = document.querySelector('#cf_mensaje').value.trim();
-    const subject = `Consulta desde la web - ${nombre} ${apellido}`;
-    const body = [
-      `Nombre: ${nombre} ${apellido}`,
-      `Teléfono: ${telefono}`,
-      `Email: ${email}`,
-      `Motivo: ${motivo}`,
-      `Mensaje: ${mensaje}`
-    ].join('\n');
-    const mailto = `mailto:lic.guarino.psicologo@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-    // The email content stays in the user's mail client; it is never sent to Google Ads.
-    window.open(mailto, '_blank');
-
-    if (window.GermanConsent?.canMeasureAds()) {
-      window.GermanConsent.record({
-        event: 'contact_form_submit',
-        form_name: 'contact'
-      });
-      sendGoogleAdsConversion(GOOGLE_ADS_CONVERSIONS.contactForm);
-    }
-
     const status = document.querySelector('#contactFormStatus');
-    if (status) {
-      status.textContent = 'Tu aplicación de correo debería abrirse con el mensaje preparado. Enviá el email desde allí para completar la consulta.';
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    const formName = contactForm.getAttribute('name');
+    const netlifyProcessed = !contactForm.hasAttribute('data-netlify')
+      && contactForm.querySelector('input[name="form-name"]')?.value === formName;
+
+    if (!netlifyProcessed) {
+      const subject = 'Solicitud de primera entrevista desde la web';
+      const body = [`Nombre: ${nombre}`, `Email: ${email}`].join('\n');
+      const mailto = `mailto:lic.guarino.psicologo@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.open(mailto, '_blank');
+      if (status) {
+        status.textContent = 'Se preparó un borrador en tu aplicación de correo. Pulsá «Enviar» para completar el envío; este sitio no puede confirmar su recepción. ';
+        const link = document.createElement('a');
+        link.href = mailto;
+        link.textContent = 'Abrir el correo';
+        status.append(link);
+      }
+      return;
     }
-    contactForm.reset();
+
+    if (submitButton) submitButton.disabled = true;
+    if (status) status.textContent = 'Enviando…';
+
+    try {
+      const response = await fetch(contactForm.getAttribute('action') || '/', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: new URLSearchParams(new FormData(contactForm)).toString()
+      });
+      if (!response.ok) throw new Error('Form submission failed');
+
+      if (status) {
+        status.textContent = 'Tu solicitud fue recibida en el sitio. Para coordinar una primera entrevista, también podés escribir a ';
+        const link = document.createElement('a');
+        link.href = 'mailto:lic.guarino.psicologo@gmail.com';
+        link.textContent = 'lic.guarino.psicologo@gmail.com';
+        status.append(link, '.');
+      }
+      if (window.GermanConsent?.canMeasureAds()) {
+        window.GermanConsent.record({
+          event: 'contact_form_submit',
+          form_name: 'contact'
+        });
+        sendGoogleAdsConversion(GOOGLE_ADS_CONVERSIONS.contactForm);
+      }
+      contactForm.reset();
+    } catch (error) {
+      if (status) {
+        status.textContent = 'No se pudo enviar el formulario. Intentá de nuevo o escribí directamente a ';
+        const link = document.createElement('a');
+        link.href = 'mailto:lic.guarino.psicologo@gmail.com';
+        link.textContent = 'lic.guarino.psicologo@gmail.com';
+        status.append(link, '.');
+      }
+    } finally {
+      if (submitButton) submitButton.disabled = false;
+    }
   });
 }
