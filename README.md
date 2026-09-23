@@ -19,7 +19,7 @@ Puis ouvrir `http://localhost:8080`.
 ## Fonctionnement du contact et des tarifs
 
 - Le formulaire ouvre un e-mail prérempli à `lic.guarino.psicologo@gmail.com` ; aucun message n'est stocké par le site.
-- Le QR code WhatsApp est hébergé localement dans `assets/whatsapp-qr.png` et encode `https://wa.me/5491159539389`.
+- Le QR code WhatsApp (`assets/whatsapp-qr.png`) encode désormais `https://floskinou.github.io/German/qr-whatsapp/`, une page de redirection noindex qui émet l'événement GTM `qr_whatsapp_scan` avant d'ouvrir WhatsApp. La balise GTM / conversion Ads restera à configurer quand le conteneur sera disponible.
 - La grille proposée est de 30 EUR pour la première entrevue, 51 EUR par séance et 170 EUR pour quatre séances. Le tarif individuel correspond exactement à 15 % sous la borne espagnole de 60 EUR (60 × 0,85 = 51).
 - Les références européennes affichées sont des repères publics observés en septembre 2026, pas des barèmes officiels.
 
