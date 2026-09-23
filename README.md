@@ -19,7 +19,8 @@ Puis ouvrir `http://localhost:8080`.
 ## Fonctionnement du contact et des tarifs
 
 - Le formulaire ouvre un e-mail prérempli à `lic.guarino.psicologo@gmail.com` ; aucun message n'est stocké par le site.
-- Le QR code WhatsApp (`assets/whatsapp-qr.png`) encode désormais `https://floskinou.github.io/German/qr-whatsapp/`, une page de redirection noindex qui émet l'événement GTM `qr_whatsapp_scan` avant d'ouvrir WhatsApp. La balise GTM / conversion Ads restera à configurer quand le conteneur sera disponible.
+- Les conversions Google Ads sont installées avec le Google tag `AW-18469753508`. « Contact WhatsApp » se déclenche sur les clics `wa.me` et l'ouverture de la route QR (`qr_whatsapp_scan`) ; « Formulaire de contact » se déclenche après une soumission HTML valide, qui ouvre un e-mail prérempli. Ces événements mesurent des interactions, pas l'envoi confirmé d'un message WhatsApp ou d'un e-mail.
+- Les paramètres d'événement Google Ads sont `send_to`, `value: 1.0` et `currency: ARS` ; aucun champ du formulaire (motif, message, nom, téléphone, e-mail) n'est inclus dans ces événements. Le Google tag peut transmettre des métadonnées techniques de navigation. Consent Mode démarre avec les stockages publicitaires/analytics et la personnalisation refusés ; aucun tag de remarketing n'est posé. Sans bannière/gestionnaire de consentement (CMP), cet état reste refusé et l'attribution peut être limitée.
 - La grille proposée est de 30 EUR pour la première entrevue, 51 EUR par séance et 170 EUR pour quatre séances. Le tarif individuel correspond exactement à 15 % sous la borne espagnole de 60 EUR (60 × 0,85 = 51).
 - Les références européennes affichées sont des repères publics observés en septembre 2026, pas des barèmes officiels.
 

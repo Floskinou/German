@@ -17,6 +17,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+  <!-- Google Ads conversion measurement only; ad personalization is disabled. -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18469753508"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {ad_storage: 'denied', analytics_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied'});
+    gtag('set', 'ads_data_redaction', true);
+    gtag('js', new Date());
+    gtag('config', 'AW-18469753508', {allow_ad_personalization_signals: false});
+  </script>
   <link rel="stylesheet" href="styles.css">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Psychologist","name":"Lic. Germán Esteban Guarino","email":"lic.guarino.psicologo@gmail.com","telephone":"+54 9 11 5953-9389","areaServed":"Argentina","availableService":{"@type":"MedicalTherapy","name":"Atención psicológica online"},"url":"https://floskinou.github.io/German/"}</script>
 </head>
@@ -173,7 +183,7 @@
         <div class="contact-form-area">
           <h2>Envíame un mensaje</h2>
           <p>Dejame tus datos y te respondo a la brevedad para coordinar una entrevista.</p>
-          <form class="contact-form" id="contactForm" onsubmit="event.preventDefault();window.open('mailto:lic.guarino.psicologo@gmail.com?subject='+encodeURIComponent('Consulta desde la web - '+document.getElementById('cf_nombre').value+' '+document.getElementById('cf_apellido').value)+'&body='+encodeURIComponent('Nombre: '+document.getElementById('cf_nombre').value+' '+document.getElementById('cf_apellido').value+'\nTeléfono: '+document.getElementById('cf_telefono').value+'\nEmail: '+document.getElementById('cf_email').value+'\nMotivo: '+document.getElementById('cf_motivo').value+'\nMensaje: '+document.getElementById('cf_mensaje').value),this.reset());return false">
+          <form class="contact-form" id="contactForm">
             <div class="form-row-2">
               <input type="text" id="cf_nombre" placeholder="Nombre" required aria-label="Nombre">
               <input type="text" id="cf_apellido" placeholder="Apellido" required aria-label="Apellido">
@@ -192,8 +202,9 @@
               <option>Otro</option>
             </select>
             <textarea id="cf_mensaje" rows="4" placeholder="Contame brevemente qué te está pasando (opcional)" aria-label="Mensaje"></textarea>
-            <button type="submit" class="button button-primary" data-wa="form-submit">Enviar mensaje <span aria-hidden="true">→</span></button>
+            <button type="submit" class="button button-primary">Enviar mensaje <span aria-hidden="true">→</span></button>
           </form>
+          <p class="contact-form-status" id="contactFormStatus" role="status" aria-live="polite"></p>
         </div>
         <aside class="contact-whatsapp-area">
           <h2>WhatsApp directo</h2>

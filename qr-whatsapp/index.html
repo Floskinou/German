@@ -6,6 +6,16 @@
   <meta name="robots" content="noindex,nofollow">
   <meta name="theme-color" content="#f3efe6">
   <title>Abriendo WhatsApp · Germán Guarino</title>
+  <!-- Google Ads conversion measurement only; ad personalization is disabled. -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18469753508"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {ad_storage: 'denied', analytics_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied'});
+    gtag('set', 'ads_data_redaction', true);
+    gtag('js', new Date());
+    gtag('config', 'AW-18469753508', {allow_ad_personalization_signals: false});
+  </script>
   <style>
     :root{color-scheme:light;--paper:#f3efe6;--ivory:#fbf9f4;--ink:#18211b;--muted:#64675f;--line:#d9d4c8;--green:#264d3a;--terra:#b85c3d}
     *{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:var(--paper);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
@@ -26,11 +36,13 @@
       redirected = true;
       window.location.replace(whatsappTarget);
     };
-    window.dataLayer.push({
-      event: 'qr_whatsapp_scan',
-      contact_channel: 'printed_qr',
-      eventCallback: continueToWhatsApp,
-      eventTimeout: 1800
+    window.dataLayer.push({event: 'qr_whatsapp_scan', contact_channel: 'printed_qr'});
+    gtag('event', 'conversion', {
+      send_to: 'AW-18469753508/hmXvCM6Jt4IdEKSliOdE',
+      value: 1.0,
+      currency: 'ARS',
+      event_callback: continueToWhatsApp,
+      event_timeout: 1800
     });
     window.setTimeout(continueToWhatsApp, 2200);
   </script>
