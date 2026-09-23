@@ -17,17 +17,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
-  <!-- Google Ads conversion measurement only; ad personalization is disabled. -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18469753508"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('consent', 'default', {ad_storage: 'denied', analytics_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied'});
-    gtag('set', 'ads_data_redaction', true);
-    gtag('js', new Date());
-    gtag('config', 'AW-18469753508', {allow_ad_personalization_signals: false});
-  </script>
+  <meta name="ads-measurement" content="enabled">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="consent.css">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Psychologist","name":"Lic. Germán Esteban Guarino","email":"lic.guarino.psicologo@gmail.com","telephone":"+54 9 11 5953-9389","areaServed":"Argentina","availableService":{"@type":"MedicalTherapy","name":"Atención psicológica online"},"url":"https://floskinou.github.io/German/"}</script>
 </head>
 <body>
@@ -46,7 +38,7 @@
     </nav>
   </header>
 
-  <main id="contenido">
+  <main id="contenido" tabindex="-1">
     <section class="hero" id="inicio">
       <div class="hero-copy">
         <p class="eyebrow"><span></span> Atención psicológica online · Buenos Aires</p>
@@ -237,8 +229,10 @@
       <div><h2>Modalidad</h2><p>Atención online<br>Turnos programados</p></div>
     </div>
     <div class="footer-legal"><p>© <span id="year"></span> Lic. Germán Esteban Guarino.</p><p>La información de este sitio es orientativa y no reemplaza una consulta profesional. No se garantizan resultados terapéuticos.</p></div>
+    <div class="footer-privacy-controls"><a href="privacidad.html">Aviso de privacidad y cookies</a><button type="button" id="preferencias-privacidad" data-open-consent>Preferencias de privacidad</button><button type="button" id="retirar-consentimiento" data-revoke-consent>Rechazar o retirar medición</button></div>
   </footer>
   <a class="floating-wa" data-wa="floating" href="https://wa.me/5491159539389?text=Hola%20Germ%C3%A1n%2C%20quisiera%20consultar%20por%20una%20primera%20entrevista." target="_blank" rel="noopener" aria-label="Consultar por WhatsApp">WhatsApp <span aria-hidden="true">→</span></a>
+  <script src="consent.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

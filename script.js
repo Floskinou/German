@@ -4,13 +4,12 @@ const GOOGLE_ADS_CONVERSIONS = Object.freeze({
 });
 
 function sendGoogleAdsConversion(sendTo) {
-  if (typeof window.gtag === 'function') {
-    window.gtag('event', 'conversion', {
-      send_to: sendTo,
-      value: 1.0,
-      currency: 'ARS'
-    });
-  }
+  if (!window.GermanConsent?.canMeasureAds() || typeof window.gtag !== 'function') return;
+  window.gtag('event', 'conversion', {
+    send_to: sendTo,
+    value: 1.0,
+    currency: 'ARS'
+  });
 }
 
 const toggle = document.querySelector('.menu-toggle');
@@ -40,8 +39,8 @@ document.querySelectorAll('details').forEach((item) => {
 
 document.querySelectorAll('a[data-wa][href^="https://wa.me/"]').forEach((link) => {
   link.addEventListener('click', () => {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
+    if (!window.GermanConsent?.canMeasureAds()) return;
+    window.GermanConsent.record({
       event: 'whatsapp_contact_click',
       cta_position: link.dataset.wa
     });
@@ -76,12 +75,13 @@ if (contactForm) {
     // The email content stays in the user's mail client; it is never sent to Google Ads.
     window.open(mailto, '_blank');
 
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: 'contact_form_submit',
-      form_name: 'contact'
-    });
-    sendGoogleAdsConversion(GOOGLE_ADS_CONVERSIONS.contactForm);
+    if (window.GermanConsent?.canMeasureAds()) {
+      window.GermanConsent.record({
+        event: 'contact_form_submit',
+        form_name: 'contact'
+      });
+      sendGoogleAdsConversion(GOOGLE_ADS_CONVERSIONS.contactForm);
+    }
 
     const status = document.querySelector('#contactFormStatus');
     if (status) {
