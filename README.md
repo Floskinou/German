@@ -28,8 +28,8 @@ Puis ouvrir `http://localhost:8080`.
 
 - Google Ads ne reçoit aucun champ du formulaire. La conversion `contact_form_button_click` part au clic sur « Enviar consulta » uniquement si les champs requis sont valides et si la personne a consenti à la mesure. Elle mesure une tentative, pas l'acceptation du POST ni la réception d'une notification. Après le POST accepté, l'événement de première partie `contact_form_submit` reste séparé; le secours `mailto:` n'est pas une preuve d'e-mail envoyé.
 - Les clics WhatsApp/QR mesurent une interaction, jamais un message effectivement envoyé ou reçu. La CMP démarre avec les états de consentement à `denied`; Google Ads ne charge qu'après l'opt-in. Analytics, `ad_user_data`, personnalisation et remarketing restent désactivés.
-- La grille proposée est de 30 EUR pour la première entrevue, 51 EUR par séance et 170 EUR pour quatre séances. Le tarif individuel correspond exactement à 15 % sous la borne espagnole de 60 EUR (60 × 0,85 = 51).
-- Les références européennes affichées sont des repères publics observés en septembre 2026, pas des barèmes officiels.
+- La grille indicative est de £25.79 pour la première entrevue, £43.83 par séance et £146.12 pour quatre séances (£36.53 par séance). Montants convertis depuis 30/51/170 EUR au taux de référence BCE du 23/09/2026 (1 EUR = 0.8595 GBP). Le tarif individuel reste 15 % sous la référence espagnole basse convertie (£51.57 × 0.85 ≈ £43.83).
+- Les références européennes affichées sont des repères publics observés en septembre 2026, convertis en GBP au taux BCE ci-dessus; ce ne sont pas des barèmes officiels. Le compte Google Ads du professionnel est en ARS: la devise de l'événement de conversion reste celle du compte, sans représenter le prix d'une séance ni un revenu.
 
 
 ## Sources professionnelles utilisées
