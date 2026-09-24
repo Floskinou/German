@@ -1,5 +1,5 @@
 const GOOGLE_ADS_CONVERSIONS = Object.freeze({
-  contactForm: 'AW-18469753508/kflHCMuJt4IdEKSliOdE',
+  contactFormButtonClick: 'AW-18469753508/kflHCMuJt4IdEKSliOdE',
   whatsapp: 'AW-18469753508/hmXvCM6Jt4IdEKSliOdE'
 });
 
@@ -53,6 +53,16 @@ if (year) year.textContent = new Date().getFullYear();
 
 const contactForm = document.querySelector('#contactForm');
 if (contactForm) {
+  const contactSubmitButton = contactForm.querySelector('button[type="submit"]');
+  contactSubmitButton?.addEventListener('click', () => {
+    if (!contactForm.checkValidity() || !window.GermanConsent?.canMeasureAds()) return;
+    window.GermanConsent.record({
+      event: 'contact_form_button_click',
+      form_name: 'contact'
+    });
+    sendGoogleAdsConversion(GOOGLE_ADS_CONVERSIONS.contactFormButtonClick);
+  });
+
   contactForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
@@ -102,7 +112,6 @@ if (contactForm) {
           event: 'contact_form_submit',
           form_name: 'contact'
         });
-        sendGoogleAdsConversion(GOOGLE_ADS_CONVERSIONS.contactForm);
       }
       contactForm.reset();
     } catch (error) {

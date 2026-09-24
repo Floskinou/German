@@ -94,7 +94,7 @@
           <p class="consent-kicker">Privacidad y cookies</p>
           <h2 id="consent-title">Elegí cómo medimos</h2>
           <p id="consent-description" class="consent-copy">
-            Google Ads mide clics en WhatsApp y el intento de abrir un correo prellenado. Solo se carga tras aceptar; no confirma el envío ni recibe los campos, el motivo o el mensaje del formulario. No usamos personalización ni remarketing.
+            Google Ads mide clics en WhatsApp y clics válidos en «Enviar consulta». La etiqueta solo se carga si aceptás la medición. El clic cuenta como un intento de contacto; no confirma que el formulario se haya enviado ni que se haya recibido o respondido una notificación. No recibe los campos del formulario. No usamos personalización ni remarketing.
           </p>
           <p class="consent-more">Podés seguir sin aceptar. Esta opción solo controla Google Ads; las fuentes de Google Fonts se solicitan aparte. <a href="privacidad.html">Aviso de privacidad y cookies</a>.</p>
           <div class="consent-settings" id="consent-settings" hidden>
